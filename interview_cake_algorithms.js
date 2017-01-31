@@ -27,3 +27,19 @@ function productExceptIndex(arr) {
     }
    	return products;
 }
+
+// Given an arrayOfInts,
+// find the highestProduct you can get from three of the integers.
+
+function myFunction(arr) {
+	arr.sort();
+    var current = 0;
+    var store = [];
+    for (var i = 1; i < arr.length; i++) {
+    	store.push(arr[current] * arr[i] * arr[i+1])
+        current ++;
+    }
+    // remove NaN
+    store = store.filter(Boolean);
+    return Math.max(...store);
+}
