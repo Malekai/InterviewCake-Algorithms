@@ -43,3 +43,24 @@ function myFunction(arr) {
     store = store.filter(Boolean);
     return Math.max(...store);
 }
+
+// Write a function mergeRanges() that takes an array of meeting time ranges
+// and returns an array of condensed ranges.
+
+function myFunction(arr) {
+    arr.sort((a, b) => { return a.startTime - b.startTime });
+    // start with lowest
+    var merged = [arr[0]];
+    for (var i = 1; i < arr.length; i++) {
+        // store last merged
+        var lastMerged = merged[merged.length - 1];
+        if (arr[i].startTime <= lastMerged.endTime) {
+            // get maximum of end times and make the newest merge
+            lastMerged.endTime = Math.max(arr[i].endTime, lastMerged.endTime);
+        } else {
+            // add to arr
+            merged.push(arr[i]);
+        }
+    }
+    return merged;
+}
